@@ -1,7 +1,11 @@
-import "./App.css";
+import "./styles/global.css";
 
 const App = () => {
-  return <h1>Olá!</h1>;
+  return (
+    <div className="container">
+      <h1 className="text-4xl text-red-500">Olá!</h1>
+    </div>
+  );
 };
 
 export default App;
