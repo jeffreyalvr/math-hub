@@ -1,12 +1,6 @@
 import logo_img from "../../assets/images/logo.png";
 
-const Header = () => {
-  const operacoes = [
-    { nome: "soma", simbolo: "+" },
-    { nome: "subtração", simbolo: "-" },
-    { nome: "multiplicação", simbolo: "*" },
-    { nome: "divisão", simbolo: "/" },
-  ];
+const Header = ({ operacoes, operacaoSelecionada, handleOperacao }) => {
   return (
     <header className="container flex flex-col rounded-lg overflow-hidden mt-8">
       <div className="bg-gray-100 p-16">
@@ -16,8 +10,17 @@ const Header = () => {
         </h1>
       </div>
       <div className="bg-gray-300 flex flex-row">
-        {operacoes.map((operacao) => (
-          <a href="#" className="p-4 hover:bg-slate-200">
+        {Object.values(operacoes).map((operacao) => (
+          <a
+            href="#"
+            className={`p-4 hover:bg-opacity-75 ${
+              operacaoSelecionada.nome === operacao.nome
+                ? "bg-emerald-500 text-white font-bold"
+                : null
+            }`}
+            onClick={() => handleOperacao(operacao.id)}
+            key={operacao.id}
+          >
             {operacao.nome}
           </a>
         ))}
