@@ -7,7 +7,7 @@ const Main = ({ operacaoSelecionada }) => {
 
       <div className="container flex flex-row justify-center p-4 gap-8 rounded-lg bg-[#C7C7C7]">
         <span
-          className="flex flex-row gap-3 items-center"
+          className="flex flex-row gap-3 items-center text-[#555555]"
           title="Determina a quantidade de valores a serem calculados"
         >
           quantidade de valores
@@ -20,7 +20,7 @@ const Main = ({ operacaoSelecionada }) => {
         </span>
 
         <span
-          className="flex flex-row gap-3 items-center"
+          className="flex flex-row gap-3 items-center text-[#555555]"
           title="Determina o alcance máximo de cada número calculado"
         >
           alcance dos valores

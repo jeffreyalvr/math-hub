@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="container">
+    <footer>
       <span className="text-center w-full inline-block text-xl">
         feito por{" "}
         <a
@@ -8,7 +8,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
           title="Clique para abrir o meu GitHub"
-          className="text-blue-600 underline"
+          className="text-emerald-500 underline hover:text-emerald-400"
         >
           @jeffreyalvr
         </a>

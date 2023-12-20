@@ -1,5 +1,7 @@
 import logo_img from "../../assets/images/logo.png";
 
+import Footer from "../Footer";
+
 const Sidebar = ({ operacoes, operacaoSelecionada, handleOperacao }) => {
   return (
     <aside className="flex flex-col w-[350px] h-screen px-4 gap-8 bg-[#333333] text-white">
@@ -25,6 +27,8 @@ const Sidebar = ({ operacoes, operacaoSelecionada, handleOperacao }) => {
           </a>
         ))}
       </nav>
+
+      <Footer />
     </aside>
   );
 };
