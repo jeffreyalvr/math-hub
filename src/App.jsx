@@ -2,9 +2,8 @@ import "./styles/global.css";
 
 import { useState } from "react";
 
-import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
-import Footer from "./components/Footer";
 
 const App = () => {
   const operacoes = {
@@ -26,14 +25,13 @@ const App = () => {
   };
 
   return (
-    <div className="container flex flex-col gap-6 mx-auto">
-      <Header
+    <div className="flex flex-row w-full h-screen">
+      <Sidebar
         operacoes={operacoes}
         operacaoSelecionada={operacaoSelecionada}
         handleOperacao={handleOperacao}
       />
       <Main operacaoSelecionada={operacaoSelecionada} />
-      <Footer />
     </div>
   );
 };
