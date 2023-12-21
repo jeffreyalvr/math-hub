@@ -1,4 +1,12 @@
+import { useRef, useEffect } from "react";
+
 const Main = ({ operacaoSelecionada }) => {
+  const campoInput = useRef(null);
+
+  useEffect(() => {
+    if (campoInput.current) campoInput.current.focus();
+  }, []);
+
   return (
     <div className="w-full flex flex-col gap-8 max-w-3xl m-auto px-4 pb-4 lg:pb-0">
       <h1 className="pb-4 text-3xl font-bold capitalize text-[#6B7280] border-b border-[#B7B7B7]">
@@ -48,6 +56,7 @@ const Main = ({ operacaoSelecionada }) => {
           <span className="text-emerald-500">=</span>
           <input
             type="text"
+            ref={campoInput}
             className="w-fit text-6xl bg-transparent border-0 outline-none text-cyan-400"
           />
         </div>
