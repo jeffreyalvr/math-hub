@@ -1,11 +1,29 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const Main = ({ operacaoSelecionada }) => {
+  const [resultadoInput, setResultadoInput] = useState("");
   const campoInput = useRef(null);
 
   useEffect(() => {
     if (campoInput.current) campoInput.current.focus();
   }, []);
+
+  const checaValidadeCaracteres = () => {
+    if (!/^-?\d{1,3}(,\d{3})*(\.\d+)?$/.test(resultadoInput)) {
+      alert("O valor inserido não está formatado de forma aceitável.");
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const handleEntradaCaracteres = (e) => {
+    setResultadoInput(e.target.value);
+  };
+
+  const handleVerificar = () => {
+    if (checaValidadeCaracteres() === false) return;
+  };
 
   return (
     <div className="w-full flex flex-col gap-8 max-w-3xl m-auto px-4 pb-4 lg:pb-0">
@@ -58,10 +76,15 @@ const Main = ({ operacaoSelecionada }) => {
             type="text"
             ref={campoInput}
             className="w-fit text-6xl bg-transparent border-0 outline-none text-cyan-400"
+            value={resultadoInput}
+            onChange={(e) => handleEntradaCaracteres(e)}
           />
         </div>
         <div className="flex flex-row justify-center gap-4 my-4">
-          <button className="py-4 px-12 rounded-lg bg-[#4984CA] text-white font-bold hover:bg-opacity-75">
+          <button
+            className="py-4 px-12 rounded-lg bg-[#4984CA] text-white font-bold hover:bg-opacity-75"
+            onClick={handleVerificar}
+          >
             Verificar
           </button>
           <button className="py-4 px-12 rounded-lg bg-[#CA7849] text-white font-bold hover:bg-opacity-75">

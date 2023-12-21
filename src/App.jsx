@@ -11,6 +11,7 @@ const App = () => {
     subtracao: { id: 1, nome: "subtração", simbolo: "-" },
     multiplicacao: { id: 2, nome: "multiplicação", simbolo: "*" },
     divisao: { id: 3, nome: "divisão", simbolo: "/" },
+    porcentagem: { id: 4, nome: "porcentagem", simbolo: "/" },
   };
 
   const [operacaoSelecionada, setOperacaoSelecionada] = useState(
