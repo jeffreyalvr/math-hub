@@ -14,7 +14,7 @@ const Sidebar = ({ operacoes, operacaoSelecionada, handleOperacao }) => {
       <nav className="flex flex-col gap-1">
         {Object.values(operacoes).map((operacao) => (
           <a
-            href="#"
+            role="button"
             className={`p-4 hover:bg-opacity-75 font-bold ${
               operacaoSelecionada.nome === operacao.nome
                 ? "bg-emerald-500 text-white"
