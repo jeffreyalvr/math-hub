@@ -1,11 +1,11 @@
 const Main = ({ operacaoSelecionada }) => {
   return (
-    <div className="flex flex-col gap-8 max-w-3xl m-auto">
+    <div className="w-full flex flex-col gap-8 max-w-3xl m-auto px-4 pb-4 lg:pb-0">
       <h1 className="pb-4 text-3xl font-bold capitalize text-[#6B7280] border-b border-[#B7B7B7]">
         {operacaoSelecionada.nome}
       </h1>
 
-      <div className="container flex flex-row justify-center p-4 gap-8 rounded-lg bg-[#C7C7C7]">
+      <div className="flex flex-row flex-wrap justify-center p-4 px-10 gap-4 rounded-lg bg-[#C7C7C7] sm:justify-around">
         <span
           className="flex flex-row gap-3 items-center text-[#555555]"
           title="Determina a quantidade de valores a serem calculados"
@@ -36,15 +36,15 @@ const Main = ({ operacaoSelecionada }) => {
         </span>
       </div>
 
-      <div className="container flex flex-col p-4 gap-4 rounded-lg bg-[#C7C7C7]">
-        <div className="container flex flex-row h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-600">
+      <div className="flex flex-col p-4 gap-4 rounded-lg bg-[#C7C7C7]">
+        <div className="flex flex-row h-[130px] w-full justify-center items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-600">
           <span className="text-white">45</span>
           <span className="text-yellow-400">
             {operacaoSelecionada?.simbolo}
           </span>
           <span className="text-white">72</span>
         </div>
-        <div className="container flex flex-row h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-500">
+        <div className="flex flex-row h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-500">
           <span className="text-emerald-500">=</span>
           <input
             type="text"
