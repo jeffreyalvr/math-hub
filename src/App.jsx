@@ -25,7 +25,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-row w-full h-screen bg-[#D9D9D9]">
+    <div className="flex flex-col w-full h-screen bg-[#D9D9D9] lg:flex-row">
       <Sidebar
         operacoes={operacoes}
         operacaoSelecionada={operacaoSelecionada}
