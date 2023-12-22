@@ -1,28 +1,56 @@
 import { useRef, useEffect, useState } from "react";
 
 const Main = ({ operacaoSelecionada }) => {
+  const [valoresOperacao, setValoresOperacao] = useState([]);
   const [resultadoInput, setResultadoInput] = useState("");
+  const [quantidadeValores, setQuantidadeValores] = useState(2);
+  const [alcanceValores, setAlcanceValores] = useState(250);
+
   const campoInput = useRef(null);
 
   useEffect(() => {
     if (campoInput.current) campoInput.current.focus();
   }, []);
 
+  useEffect(() => {
+    gerarNumerosAleatorios(quantidadeValores, alcanceValores);
+  }, [quantidadeValores, alcanceValores]);
+
   const checaValidadeCaracteres = () => {
     if (!/^-?\d{1,3}(,\d{3})*(\.\d+)?$/.test(resultadoInput)) {
       alert("O valor inserido não está formatado de forma aceitável.");
       return false;
-    } else {
-      return true;
     }
+    return true;
   };
 
   const handleEntradaCaracteres = (e) => {
     setResultadoInput(e.target.value);
   };
 
+  const handleSelectQuantidadeValores = (e) => {
+    setQuantidadeValores(e.target.value);
+  };
+
+  const handleSelectAlcanceValores = (e) => {
+    setAlcanceValores(e.target.value);
+  };
+
   const handleVerificar = () => {
     if (checaValidadeCaracteres() === false) return;
+  };
+
+  const gerarNumerosAleatorios = (quantidade_valores, alcance_valores) => {
+    let arrayTotal = Array.from(
+      { length: quantidade_valores },
+      (_, index) => index + 1
+    );
+
+    arrayTotal = arrayTotal.map(() =>
+      Math.floor(Math.random() * alcance_valores)
+    );
+
+    setValoresOperacao(arrayTotal);
   };
 
   return (
@@ -37,7 +65,11 @@ const Main = ({ operacaoSelecionada }) => {
           title="Determina a quantidade de valores a serem calculados"
         >
           quantidade de valores
-          <select className="p-2 rounded-lg">
+          <select
+            className="p-2 rounded-lg"
+            value={quantidadeValores}
+            onChange={(e) => handleSelectQuantidadeValores(e)}
+          >
             <option value="2">2 valores</option>
             <option value="3">3 valores</option>
             <option value="4">4 valores</option>
@@ -50,7 +82,11 @@ const Main = ({ operacaoSelecionada }) => {
           title="Determina o alcance máximo de cada número calculado"
         >
           alcance dos valores
-          <select className="p-2 rounded-lg">
+          <select
+            className="p-2 rounded-lg"
+            value={alcanceValores}
+            onChange={(e) => handleSelectAlcanceValores(e)}
+          >
             <option value="25">até 25</option>
             <option value="100">até 100</option>
             <option value="250">até 250</option>
@@ -63,12 +99,19 @@ const Main = ({ operacaoSelecionada }) => {
       </div>
 
       <div className="flex flex-col p-4 gap-4 rounded-lg bg-[#C7C7C7]">
-        <div className="flex flex-row h-[130px] w-full justify-center items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-600">
-          <span className="text-white">45</span>
-          <span className="text-yellow-400">
-            {operacaoSelecionada?.simbolo}
-          </span>
-          <span className="text-white">72</span>
+        <div className="flex flex-row flex-wrap min-h-[130px] w-full justify-center items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-600">
+          {valoresOperacao.map((valor, index) => (
+            <>
+              <span className="text-white" key={index}>
+                {valor}
+              </span>
+              {index < valoresOperacao.length - 1 && (
+                <span className="text-yellow-400">
+                  {operacaoSelecionada?.simbolo}
+                </span>
+              )}
+            </>
+          ))}
         </div>
         <div className="flex flex-row h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-500">
           <span className="text-emerald-500">=</span>

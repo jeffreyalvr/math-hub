@@ -7,11 +7,31 @@ import Main from "./components/Main";
 
 const App = () => {
   const operacoes = {
-    soma: { id: 0, nome: "soma", simbolo: "+" },
-    subtracao: { id: 1, nome: "subtração", simbolo: "-" },
-    multiplicacao: { id: 2, nome: "multiplicação", simbolo: "*" },
-    divisao: { id: 3, nome: "divisão", simbolo: "/" },
-    porcentagem: { id: 4, nome: "porcentagem", simbolo: "/" },
+    soma: {
+      id: 0,
+      nome: "soma",
+      simbolo: "+",
+    },
+    subtracao: {
+      id: 1,
+      nome: "subtração",
+      simbolo: "-",
+    },
+    multiplicacao: {
+      id: 2,
+      nome: "multiplicação",
+      simbolo: "*",
+    },
+    divisao: {
+      id: 3,
+      nome: "divisão",
+      simbolo: "/",
+    },
+    porcentagem: {
+      id: 4,
+      nome: "porcentagem",
+      simbolo: "%",
+    },
   };
 
   const [operacaoSelecionada, setOperacaoSelecionada] = useState(
