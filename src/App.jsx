@@ -20,12 +20,12 @@ const App = () => {
     multiplicacao: {
       id: 2,
       nome: "multiplicação",
-      simbolo: "*",
+      simbolo: "×",
     },
     divisao: {
       id: 3,
       nome: "divisão",
-      simbolo: "/",
+      simbolo: "÷",
     },
     porcentagem: {
       id: 4,
