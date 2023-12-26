@@ -24,6 +24,10 @@ const Main = ({ operacaoSelecionada }) => {
     return true;
   };
 
+  const limparInput = () => {
+    setResultadoInput("");
+  };
+
   const handleEntradaCaracteres = (e) => {
     setResultadoInput(e.target.value);
   };
@@ -51,6 +55,37 @@ const Main = ({ operacaoSelecionada }) => {
     );
 
     setValoresOperacao(arrayTotal);
+  };
+
+  const handleBotaoPular = () => {
+    limparInput();
+    gerarNumerosAleatorios(quantidadeValores, alcanceValores);
+  };
+
+  const handleBotaoNaoSei = () => {
+    let resultado = resolverOperacao(
+      valoresOperacao,
+      operacaoSelecionada.simbolo
+    );
+    setResultadoInput(resultado);
+  };
+
+  const resolverOperacao = (valoresOperacao, simbolo) => {
+    if (!valoresOperacao.length || !simbolo) return NaN;
+    return valoresOperacao.reduce((acumulador, valorAtual) => {
+      switch (simbolo) {
+        case "+":
+          return acumulador + valorAtual;
+        case "-":
+          return acumulador - valorAtual;
+        case "×":
+          return acumulador * valorAtual;
+        case "÷":
+          return acumulador / valorAtual;
+        default:
+          return NaN;
+      }
+    });
   };
 
   return (
@@ -111,10 +146,9 @@ const Main = ({ operacaoSelecionada }) => {
             </div>
           ))}
         </div>
-        <div className="flex flex-row h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-500">
+        <div className="flex flex-row min-h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-500">
           <span className="text-emerald-500">=</span>
           <input
-            type="text"
             ref={campoInput}
             className="w-fit text-6xl bg-transparent border-0 outline-none text-cyan-400"
             value={resultadoInput}
@@ -128,8 +162,17 @@ const Main = ({ operacaoSelecionada }) => {
           >
             Verificar
           </button>
-          <button className="py-4 px-12 rounded-lg bg-[#CA7849] text-white font-bold hover:bg-opacity-75">
+          <button
+            className="py-4 px-12 rounded-lg bg-[#CA7849] text-white font-bold hover:bg-opacity-75"
+            onClick={handleBotaoNaoSei}
+          >
             Não sei
+          </button>
+          <button
+            className="py-4 px-12 rounded-lg bg-[#636069] text-white font-bold hover:bg-opacity-75"
+            onClick={handleBotaoPular}
+          >
+            Pular
           </button>
         </div>
       </div>
