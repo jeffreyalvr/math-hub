@@ -19,6 +19,10 @@ const Main = ({ operacaoSelecionada }) => {
     gerarNumerosAleatorios(quantidadeValores, alcanceValores);
   }, [quantidadeValores, alcanceValores]);
 
+  useEffect(() => {
+    handleResultadoContainer(false);
+  }, [quantidadeValores, alcanceValores, operacaoSelecionada]);
+
   const checaValidadeCaracteres = () => {
     if (!/^-?\d{1,3}(,\d{3})*(\.\d+)?$/.test(resultadoInput)) {
       alert("O valor inserido não está formatado de forma aceitável.");
