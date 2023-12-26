@@ -99,18 +99,16 @@ const Main = ({ operacaoSelecionada }) => {
       </div>
 
       <div className="flex flex-col p-4 gap-4 rounded-lg bg-[#C7C7C7]">
-        <div className="flex flex-row flex-wrap min-h-[130px] w-full justify-center items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-600">
+        <div className="flex flex-row flex-wrap min-h-[130px] w-full justify-center items-center rounded-lg p-6 text-6xl font-bold bg-gray-600">
           {valoresOperacao.map((valor, index) => (
-            <>
-              <span className="text-white" key={index}>
-                {valor}
-              </span>
+            <div key={index}>
+              <span className="text-white">{valor}</span>
               {index < valoresOperacao.length - 1 && (
-                <span className="text-yellow-400">
+                <span className="text-yellow-400 px-2">
                   {operacaoSelecionada?.simbolo}
                 </span>
               )}
-            </>
+            </div>
           ))}
         </div>
         <div className="flex flex-row h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-500">

@@ -27,11 +27,12 @@ const App = () => {
       nome: "divisão",
       simbolo: "÷",
     },
-    porcentagem: {
-      id: 4,
-      nome: "porcentagem",
-      simbolo: "%",
-    },
+    // porcentagem: {
+    //   id: 4,
+    //   nome: "porcentagem",
+    //   simbolo: "%",
+    //   maximoValores: 2,
+    // },
   };
 
   const [operacaoSelecionada, setOperacaoSelecionada] = useState(
