@@ -21,7 +21,7 @@ const Main = ({ operacaoSelecionada }) => {
 
   useEffect(() => {
     handleResultadoContainer(false);
-  }, [quantidadeValores, alcanceValores, operacaoSelecionada]);
+  }, [quantidadeValores, alcanceValores, operacaoSelecionada, valoresOperacao]);
 
   const checaValidadeCaracteres = () => {
     if (!/^-?\d{1,3}(,\d{3})*(\.\d+)?$/.test(resultadoInput)) {
