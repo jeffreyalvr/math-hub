@@ -3,6 +3,9 @@ import { useRef, useEffect, useState } from "react";
 const Main = ({ operacaoSelecionada }) => {
   const [valoresOperacao, setValoresOperacao] = useState([]);
   const [resultadoInput, setResultadoInput] = useState("");
+  const [resultado, setResultado] = useState(0);
+  const [visibilidadeResultadoContainer, setVisibilidadeResultadoContainer] =
+    useState(false);
   const [quantidadeValores, setQuantidadeValores] = useState(2);
   const [alcanceValores, setAlcanceValores] = useState(250);
 
@@ -57,17 +60,19 @@ const Main = ({ operacaoSelecionada }) => {
     setValoresOperacao(arrayTotal);
   };
 
+  const handleResultadoContainer = (estado) => {
+    setVisibilidadeResultadoContainer(estado);
+  };
+
   const handleBotaoPular = () => {
     limparInput();
     gerarNumerosAleatorios(quantidadeValores, alcanceValores);
   };
 
   const handleBotaoNaoSei = () => {
-    let resultado = resolverOperacao(
-      valoresOperacao,
-      operacaoSelecionada.simbolo
-    );
-    setResultadoInput(resultado);
+    let valor = resolverOperacao(valoresOperacao, operacaoSelecionada.simbolo);
+    setResultado(valor);
+    handleResultadoContainer(true);
   };
 
   const resolverOperacao = (valoresOperacao, simbolo) => {
@@ -155,6 +160,23 @@ const Main = ({ operacaoSelecionada }) => {
             onChange={(e) => handleEntradaCaracteres(e)}
           />
         </div>
+
+        <div
+          className={`${
+            visibilidadeResultadoContainer ? "flex" : "hidden"
+          } flex-row p-4 justify-between gap-4 rounded-lg bg-[#64ab7c] text-white font-bold`}
+        >
+          <span>Resposta: {resultado}</span>
+          <span
+            className="px-2 rounded-lg bg-[#0000004f] text-white"
+            role="button"
+            title="Ocultar"
+            onClick={() => handleResultadoContainer(false)}
+          >
+            X
+          </span>
+        </div>
+
         <div className="flex flex-row justify-center gap-4 my-4">
           <button
             className="py-4 px-12 rounded-lg bg-[#4984CA] text-white font-bold hover:bg-opacity-75"
