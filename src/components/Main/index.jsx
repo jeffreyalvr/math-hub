@@ -21,6 +21,7 @@ const Main = ({ operacaoSelecionada }) => {
 
   useEffect(() => {
     handleResultadoContainer(false);
+    limparInput();
   }, [quantidadeValores, alcanceValores, operacaoSelecionada, valoresOperacao]);
 
   const checaValidadeCaracteres = () => {
