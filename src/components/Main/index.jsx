@@ -54,8 +54,8 @@ const Main = ({ operacaoSelecionada }) => {
     setAlcanceValores(e.target.value);
   };
 
-  const handleVerificar = () => {
-    if (checaValidadeCaracteres() === false) return;
+  const handleResultadoContainer = (estado) => {
+    setVisibilidadeResultadoContainer(estado);
   };
 
   const gerarNumerosAleatorios = (quantidade_valores, alcance_valores) => {
@@ -74,10 +74,6 @@ const Main = ({ operacaoSelecionada }) => {
   const validaResposta = () => {
     if (!resultadoInput) return null;
     return resultado == resultadoInput ? true : false;
-  };
-
-  const handleResultadoContainer = (estado) => {
-    setVisibilidadeResultadoContainer(estado);
   };
 
   const handleBotaoPular = () => {
@@ -202,21 +198,15 @@ const Main = ({ operacaoSelecionada }) => {
         <div className="flex flex-row justify-center gap-4 my-4">
           <button
             className="py-4 px-12 rounded-lg bg-[#4984CA] text-white font-bold hover:bg-opacity-75"
-            onClick={handleVerificar}
-          >
-            Verificar
-          </button>
-          <button
-            className="py-4 px-12 rounded-lg bg-[#CA7849] text-white font-bold hover:bg-opacity-75"
             onClick={handleBotaoNaoSei}
           >
-            Não sei
+            Verificar resposta
           </button>
           <button
             className="py-4 px-12 rounded-lg bg-[#636069] text-white font-bold hover:bg-opacity-75"
             onClick={handleBotaoPular}
           >
-            Pular
+            Gerar novo cálculo
           </button>
         </div>
       </div>
