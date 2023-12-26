@@ -11,6 +11,12 @@ const Main = ({ operacaoSelecionada }) => {
 
   const campoInput = useRef(null);
 
+  const resultadoContainerCores = {
+    correto: "bg-[#64ab7c]",
+    errado: "bg-[#ab6464]",
+    vazio: "bg-[#8f8f8f]",
+  };
+
   useEffect(() => {
     if (campoInput.current) campoInput.current.focus();
   }, []);
@@ -63,6 +69,11 @@ const Main = ({ operacaoSelecionada }) => {
     );
 
     setValoresOperacao(arrayTotal);
+  };
+
+  const validaResposta = () => {
+    if (!resultadoInput) return null;
+    return resultado == resultadoInput ? true : false;
   };
 
   const handleResultadoContainer = (estado) => {
@@ -167,9 +178,15 @@ const Main = ({ operacaoSelecionada }) => {
         </div>
 
         <div
-          className={`${
-            visibilidadeResultadoContainer ? "flex" : "hidden"
-          } flex-row p-4 justify-between gap-4 rounded-lg bg-[#64ab7c] text-white font-bold`}
+          className={`${visibilidadeResultadoContainer ? "flex" : "hidden"}
+            ${
+              validaResposta() === true
+                ? resultadoContainerCores.correto
+                : validaResposta() === false
+                ? resultadoContainerCores.errado
+                : resultadoContainerCores.vazio
+            }
+          } flex-row p-4 justify-between gap-4 rounded-lg text-white font-bold`}
         >
           <span>Resposta: {resultado}</span>
           <span
