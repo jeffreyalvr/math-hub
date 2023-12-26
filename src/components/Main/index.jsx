@@ -76,12 +76,12 @@ const Main = ({ operacaoSelecionada }) => {
     return resultado == resultadoInput ? true : false;
   };
 
-  const handleBotaoPular = () => {
+  const handleBotaoGerarNovoCalculo = () => {
     limparInput();
     gerarNumerosAleatorios(quantidadeValores, alcanceValores);
   };
 
-  const handleBotaoNaoSei = () => {
+  const handleBotaoVerificar = () => {
     let valor = resolverOperacao(valoresOperacao, operacaoSelecionada.simbolo);
     setResultado(valor);
     handleResultadoContainer(true);
@@ -103,6 +103,11 @@ const Main = ({ operacaoSelecionada }) => {
           return NaN;
       }
     });
+  };
+
+  const handleKeyBindings = (e) => {
+    if (e.code === "Enter") handleBotaoVerificar();
+    if (e.code === "ShiftRight") handleBotaoGerarNovoCalculo();
   };
 
   return (
@@ -170,6 +175,7 @@ const Main = ({ operacaoSelecionada }) => {
             className="w-fit text-6xl bg-transparent border-0 outline-none text-cyan-400"
             value={resultadoInput}
             onChange={(e) => handleEntradaCaracteres(e)}
+            onKeyDown={(e) => handleKeyBindings(e)}
           />
         </div>
 
@@ -198,13 +204,13 @@ const Main = ({ operacaoSelecionada }) => {
         <div className="flex flex-row justify-center gap-4 my-4">
           <button
             className="py-4 px-12 rounded-lg bg-[#4984CA] text-white font-bold hover:bg-opacity-75"
-            onClick={handleBotaoNaoSei}
+            onClick={handleBotaoVerificar}
           >
             Verificar resposta
           </button>
           <button
             className="py-4 px-12 rounded-lg bg-[#636069] text-white font-bold hover:bg-opacity-75"
-            onClick={handleBotaoPular}
+            onClick={handleBotaoGerarNovoCalculo}
           >
             Gerar novo cálculo
           </button>
