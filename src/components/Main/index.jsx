@@ -216,6 +216,20 @@ const Main = ({ operacaoSelecionada }) => {
           </button>
         </div>
       </div>
+      <div className="flex flex-col w-full gap-4 sm:items-center">
+        <div className="flex flex-row flex-wrap gap-3 w-fit">
+          <span className="px-3 py-1 rounded-lg bg-[#C7C7C7] text-[#676767] text-xs font-bold">
+            ENTER
+          </span>{" "}
+          Para verificar a resposta.
+        </div>
+        <div className="flex flex-row flex-wrap gap-3 w-fit">
+          <span className="px-3 py-1 rounded-lg bg-[#C7C7C7] text-[#676767] text-xs font-bold">
+            SHIFT DIREITO
+          </span>{" "}
+          Para pular e gerar um novo cálculo.
+        </div>
+      </div>
     </div>
   );
 };
