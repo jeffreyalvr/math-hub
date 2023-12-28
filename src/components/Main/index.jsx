@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from "react";
 const Main = ({ operacaoSelecionada }) => {
   const [valoresOperacao, setValoresOperacao] = useState([]);
   const [resultadoInput, setResultadoInput] = useState("");
+  const [resultadoInputConfirmado, setResultadoInputConfirmado] = useState("");
   const [resultado, setResultado] = useState(0);
   const [visibilidadeResultadoContainer, setVisibilidadeResultadoContainer] =
     useState(false);
@@ -35,16 +36,17 @@ const Main = ({ operacaoSelecionada }) => {
     limparInput();
   }, [quantidadeValores, alcanceValores, operacaoSelecionada, valoresOperacao]);
 
-  const checaValidadeCaracteres = () => {
-    if (!/^-?\d{1,3}(,\d{3})*(\.\d+)?$/.test(resultadoInput)) {
-      alert("O valor inserido não está formatado de forma aceitável.");
-      return false;
-    }
-    return true;
-  };
+  // const checaValidadeCaracteres = () => {
+  //   if (!/^-?\d{1,3}(,\d{3})*(\.\d+)?$/.test(resultadoInput)) {
+  //     alert("O valor inserido não está formatado de forma aceitável.");
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   const limparInput = () => {
     setResultadoInput("");
+    setResultadoInputConfirmado("");
   };
 
   const handleEntradaCaracteres = (e) => {
@@ -79,8 +81,8 @@ const Main = ({ operacaoSelecionada }) => {
   };
 
   const validaResposta = () => {
-    if (!resultadoInput) return null;
-    return resultado == resultadoInput ? true : false;
+    if (!resultadoInputConfirmado) return null;
+    return resultado == resultadoInputConfirmado ? true : false;
   };
 
   const handleBotaoGerarNovoCalculo = () => {
@@ -90,6 +92,7 @@ const Main = ({ operacaoSelecionada }) => {
 
   const handleBotaoVerificar = () => {
     let valor = resolverOperacao(valoresOperacao, operacaoSelecionada.simbolo);
+    setResultadoInputConfirmado(resultadoInput);
     setResultado(valor);
     handleResultadoContainer(true);
   };
