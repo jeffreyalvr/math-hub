@@ -6,8 +6,13 @@ const Main = ({ operacaoSelecionada }) => {
   const [resultado, setResultado] = useState(0);
   const [visibilidadeResultadoContainer, setVisibilidadeResultadoContainer] =
     useState(false);
-  const [quantidadeValores, setQuantidadeValores] = useState(2);
-  const [alcanceValores, setAlcanceValores] = useState(250);
+
+  const [quantidadeValores, setQuantidadeValores] = useState(
+    localStorage.getItem("quantidadeValores") || 2
+  );
+  const [alcanceValores, setAlcanceValores] = useState(
+    localStorage.getItem("alcanceValores") || 250
+  );
 
   const campoInput = useRef(null);
 
@@ -47,10 +52,12 @@ const Main = ({ operacaoSelecionada }) => {
   };
 
   const handleSelectQuantidadeValores = (e) => {
+    localStorage.setItem("quantidadeValores", e.target.value);
     setQuantidadeValores(e.target.value);
   };
 
   const handleSelectAlcanceValores = (e) => {
+    localStorage.setItem("alcanceValores", e.target.value);
     setAlcanceValores(e.target.value);
   };
 
@@ -216,17 +223,18 @@ const Main = ({ operacaoSelecionada }) => {
           </button>
         </div>
       </div>
+
       <div className="flex flex-col w-full gap-4 sm:items-center">
         <div className="flex flex-row flex-wrap gap-3 w-fit">
           <span className="px-3 py-1 rounded-lg bg-[#C7C7C7] text-[#676767] text-xs font-bold">
             ENTER
-          </span>{" "}
+          </span>
           Para verificar a resposta.
         </div>
         <div className="flex flex-row flex-wrap gap-3 w-fit">
           <span className="px-3 py-1 rounded-lg bg-[#C7C7C7] text-[#676767] text-xs font-bold">
             SHIFT DIREITO
-          </span>{" "}
+          </span>
           Para pular e gerar um novo cálculo.
         </div>
       </div>
