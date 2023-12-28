@@ -20,7 +20,7 @@ const Main = ({ operacaoSelecionada }) => {
   const resultadoCores = {
     correto: "bg-[#64ab7c]",
     errado: "bg-[#ab6464]",
-    vazio: "bg-gray-500",
+    normal: "bg-gray-500",
   };
 
   useEffect(() => {
@@ -32,13 +32,13 @@ const Main = ({ operacaoSelecionada }) => {
   }, [quantidadeValores, alcanceValores]);
 
   useEffect(() => {
-    handleResultadoContainer(false);
     limparInput();
   }, [quantidadeValores, alcanceValores, operacaoSelecionada, valoresOperacao]);
 
   const limparInput = () => {
     setResultadoInput("");
     setResultadoInputConfirmado("");
+    handleResultadoContainer(false);
   };
 
   const handleEntradaCaracteres = (e) => {
@@ -86,7 +86,8 @@ const Main = ({ operacaoSelecionada }) => {
     let valor = resolverOperacao(valoresOperacao, operacaoSelecionada.simbolo);
     setResultadoInputConfirmado(resultadoInput);
     setResultado(valor);
-    handleResultadoContainer(true);
+
+    if (resultadoInput != valor) handleResultadoContainer(true);
   };
 
   const resolverOperacao = (valoresOperacao, simbolo) => {
@@ -176,7 +177,7 @@ const Main = ({ operacaoSelecionada }) => {
               ? resultadoCores.correto
               : validaResposta() === false
               ? resultadoCores.errado
-              : resultadoCores.vazio
+              : resultadoCores.normal
           }
           flex flex-row min-h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2`}
         >
@@ -192,7 +193,7 @@ const Main = ({ operacaoSelecionada }) => {
 
         <div
           className={`${visibilidadeResultadoContainer ? "flex" : "hidden"}
-            bg-[#333333] flex-row p-4 justify-between gap-4 rounded-lg text-white font-bold`}
+            bg-[#848484] flex-row p-4 justify-between gap-4 rounded-lg text-white font-bold`}
         >
           <span>Resposta: {resultado}</span>
           <span
