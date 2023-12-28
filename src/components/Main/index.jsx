@@ -17,10 +17,10 @@ const Main = ({ operacaoSelecionada }) => {
 
   const campoInput = useRef(null);
 
-  const resultadoContainerCores = {
+  const resultadoCores = {
     correto: "bg-[#64ab7c]",
     errado: "bg-[#ab6464]",
-    vazio: "bg-[#8f8f8f]",
+    vazio: "bg-gray-500",
   };
 
   useEffect(() => {
@@ -35,14 +35,6 @@ const Main = ({ operacaoSelecionada }) => {
     handleResultadoContainer(false);
     limparInput();
   }, [quantidadeValores, alcanceValores, operacaoSelecionada, valoresOperacao]);
-
-  // const checaValidadeCaracteres = () => {
-  //   if (!/^-?\d{1,3}(,\d{3})*(\.\d+)?$/.test(resultadoInput)) {
-  //     alert("O valor inserido não está formatado de forma aceitável.");
-  //     return false;
-  //   }
-  //   return true;
-  // };
 
   const limparInput = () => {
     setResultadoInput("");
@@ -178,11 +170,20 @@ const Main = ({ operacaoSelecionada }) => {
             </div>
           ))}
         </div>
-        <div className="flex flex-row min-h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2 bg-gray-500">
-          <span className="text-emerald-500">=</span>
+        <div
+          className={`${
+            validaResposta() === true
+              ? resultadoCores.correto
+              : validaResposta() === false
+              ? resultadoCores.errado
+              : resultadoCores.vazio
+          }
+          flex flex-row min-h-[130px] w-full items-center rounded-lg p-6 text-6xl font-bold gap-2`}
+        >
+          <span className="text-white drop-shadow-md">=</span>
           <input
             ref={campoInput}
-            className="w-fit text-6xl bg-transparent border-0 outline-none text-cyan-400"
+            className="w-fit text-6xl bg-transparent border-0 outline-none text-white"
             value={resultadoInput}
             onChange={(e) => handleEntradaCaracteres(e)}
             onKeyDown={(e) => handleKeyBindings(e)}
@@ -191,14 +192,7 @@ const Main = ({ operacaoSelecionada }) => {
 
         <div
           className={`${visibilidadeResultadoContainer ? "flex" : "hidden"}
-            ${
-              validaResposta() === true
-                ? resultadoContainerCores.correto
-                : validaResposta() === false
-                ? resultadoContainerCores.errado
-                : resultadoContainerCores.vazio
-            }
-          } flex-row p-4 justify-between gap-4 rounded-lg text-white font-bold`}
+            bg-[#333333] flex-row p-4 justify-between gap-4 rounded-lg text-white font-bold`}
         >
           <span>Resposta: {resultado}</span>
           <span
