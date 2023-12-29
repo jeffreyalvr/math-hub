@@ -1,5 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 
+import History from "../History";
+
 const Main = ({ operacaoSelecionada }) => {
   const [valoresOperacao, setValoresOperacao] = useState([]);
   const [resultadoInput, setResultadoInput] = useState("");
@@ -7,6 +9,7 @@ const Main = ({ operacaoSelecionada }) => {
   const [resultado, setResultado] = useState(0);
   const [visibilidadeResultadoContainer, setVisibilidadeResultadoContainer] =
     useState(false);
+  const [arrayHistorico, setArrayHistorico] = useState([]);
 
   const [quantidadeValores, setQuantidadeValores] = useState(
     localStorage.getItem("quantidadeValores") || 2
@@ -77,6 +80,10 @@ const Main = ({ operacaoSelecionada }) => {
     return resultado == resultadoInputConfirmado ? true : false;
   };
 
+  const adicionarNoHistorico = (item) => {
+    setArrayHistorico((prevState) => [...prevState, item]);
+  };
+
   const handleBotaoGerarNovoCalculo = () => {
     limparInput();
     gerarNumerosAleatorios(quantidadeValores, alcanceValores);
@@ -86,6 +93,15 @@ const Main = ({ operacaoSelecionada }) => {
     let valor = resolverOperacao(valoresOperacao, operacaoSelecionada.simbolo);
     setResultadoInputConfirmado(resultadoInput);
     setResultado(valor);
+
+    let item = {
+      valores: valoresOperacao,
+      operacao: operacaoSelecionada.simbolo,
+      valorEnviado: resultadoInput,
+      estado: "correto",
+    };
+
+    adicionarNoHistorico(item);
 
     if (resultadoInput != valor) handleResultadoContainer(true);
   };
@@ -236,6 +252,8 @@ const Main = ({ operacaoSelecionada }) => {
           Para pular e gerar um novo cálculo.
         </div>
       </div>
+
+      <History itens={arrayHistorico} />
     </div>
   );
 };
