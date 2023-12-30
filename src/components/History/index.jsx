@@ -8,7 +8,7 @@ const History = ({ itens: arrayHistorico }) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-8 max-w-3xl m-auto px-4 pb-4 lg:pb-0">
+    <div className="w-full flex flex-col gap-8">
       <h1 className="pb-4 text-3xl font-bold capitalize text-[#6B7280] border-b border-[#B7B7B7]">
         Histórico{" "}
         <button
