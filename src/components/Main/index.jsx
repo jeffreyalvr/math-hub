@@ -111,9 +111,11 @@ const Main = ({ operacaoSelecionada }) => {
       estado: valor == resultadoInput ? "correto" : "incorreto",
     };
 
-    adicionarNoHistorico(item);
-
     if (resultadoInput != valor) handleResultadoContainer(true);
+
+    if (resultadoInput == "") return;
+
+    adicionarNoHistorico(item);
   };
 
   const resolverOperacao = (valoresOperacao, simbolo) => {
