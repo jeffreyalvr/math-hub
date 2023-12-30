@@ -7,7 +7,7 @@ const History = ({ itens: arrayHistorico }) => {
         Histórico
       </h1>
 
-      <div className="p-2 px-2 w-full rounded-lg bg-[#C7C7C7]">
+      <div className="p-2 px-2 w-full max-h-80 rounded-lg bg-[#C7C7C7] overflow-y-auto">
         {arrayHistorico && arrayHistorico.length > 0 ? (
           <table className="w-full border-separate">
             <thead className="text-left">
@@ -22,7 +22,7 @@ const History = ({ itens: arrayHistorico }) => {
               {arrayHistorico.map((item, index) => (
                 <tr
                   className={
-                    item.estado === "errado"
+                    item.estado === "incorreto"
                       ? `bg-red-300 mb-2`
                       : `bg-green-300`
                   }
