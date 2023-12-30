@@ -98,7 +98,7 @@ const Main = ({ operacaoSelecionada }) => {
       valores: valoresOperacao,
       operacao: operacaoSelecionada.simbolo,
       valorEnviado: resultadoInput,
-      estado: "correto",
+      estado: valor == resultadoInput ? "correto" : "incorreto",
     };
 
     adicionarNoHistorico(item);
