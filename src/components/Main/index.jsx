@@ -81,6 +81,16 @@ const Main = ({ operacaoSelecionada }) => {
   };
 
   const adicionarNoHistorico = (item) => {
+    if (arrayHistorico.length > 0) {
+      const ultimoItem = arrayHistorico[arrayHistorico.length - 1];
+
+      const saoIguais = Object.keys(item).every((key) => {
+        return item[key] === ultimoItem[key];
+      });
+
+      if (saoIguais) return;
+    }
+
     setArrayHistorico((prevState) => [...prevState, item]);
   };
 
