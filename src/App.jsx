@@ -1,6 +1,7 @@
 import "./styles/global.css";
 
 import { useState } from "react";
+import { OperacaoSelecionadaContext } from "./Contexts/OperacaoSelecionadaContext";
 
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
@@ -27,12 +28,6 @@ const App = () => {
       nome: "divisão",
       simbolo: "÷",
     },
-    // porcentagem: {
-    //   id: 4,
-    //   nome: "porcentagem",
-    //   simbolo: "%",
-    //   maximoValores: 2,
-    // },
   };
 
   const [operacaoSelecionada, setOperacaoSelecionada] = useState(
@@ -40,21 +35,21 @@ const App = () => {
   );
 
   const handleOperacao = (operacaoId) => {
-    const op = Object.values(operacoes).find(
+    const selecionada = Object.values(operacoes).find(
       (operacao) => operacao.id === operacaoId
     );
-    setOperacaoSelecionada(op);
+    setOperacaoSelecionada(selecionada);
   };
 
   return (
-    <div className="flex flex-col w-full h-full bg-[#D9D9D9] lg:flex-row">
-      <Sidebar
-        operacoes={operacoes}
-        operacaoSelecionada={operacaoSelecionada}
-        handleOperacao={handleOperacao}
-      />
-      <Main operacaoSelecionada={operacaoSelecionada} />
-    </div>
+    <OperacaoSelecionadaContext.Provider
+      value={{ operacaoSelecionada, setOperacaoSelecionada }}
+    >
+      <div className="flex flex-col w-full h-full bg-[#D9D9D9] lg:flex-row">
+        <Sidebar operacoes={operacoes} handleOperacao={handleOperacao} />
+        <Main />
+      </div>
+    </OperacaoSelecionadaContext.Provider>
   );
 };
 
