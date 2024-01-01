@@ -9,7 +9,7 @@ const Sidebar = ({ operacoes, handleOperacao }) => {
   const { operacaoSelecionada } = useContext(OperacaoSelecionadaContext);
 
   return (
-    <aside className="flex flex-col py-6 px-4 gap-8 w-full h-full mb-8 bg-[#333333] text-white lg:w-[350px] lg:mb-0 lg:h-screen lg:py-0">
+    <aside className="flex flex-col py-6 px-4 gap-8 w-full h-full mb-8 bg-[#333333] text-white lg:w-[350px] lg:mb-0 lg:py-0">
       <div className="flex justify-center py-16 border-b border-[#535353]">
         <h1 className="flex flex-row gap-4 items-center text-3xl font-bold text-white">
           <img src={logo_img} alt="Logo" />
