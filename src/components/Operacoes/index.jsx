@@ -145,7 +145,7 @@ const Operacoes = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 w-full max-w-3xl m-auto">
+    <div className="flex flex-col gap-8 pb-4 w-full max-w-3xl m-auto lg:pb-0">
       <h3 className="text-xl font-bold capitalize text-center text-[#6B7280]">
         {operacaoSelecionada.nome}
       </h3>
