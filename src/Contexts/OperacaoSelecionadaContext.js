@@ -1,9 +1,3 @@
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 
-export const OperacaoSelecionadaContext = createContext({
-  operacaoSelecionada: "",
-  setOperacaoSelecionada: () => {},
-});
-
-export const useOperacaoSelecionadaContext = () =>
-  useContext(OperacaoSelecionadaContext);
+export const OperacaoSelecionadaContext = createContext();

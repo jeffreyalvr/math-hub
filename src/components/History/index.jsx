@@ -1,9 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import { ArrayHistoricoContext } from "../../Contexts/ArrayHistoricoContext";
 
-const History = ({ itens: arrayHistorico }) => {
+const History = () => {
+  const { arrayHistorico } = useContext(ArrayHistoricoContext);
+
   return (
     <div className="w-full flex flex-col gap-8">
-      <div className="p-2 px-2 w-full max-h-80 rounded-lg bg-[#C7C7C7] overflow-y-auto">
+      <div className="p-2 px-2 w-full max-h-96 rounded-lg bg-[#C7C7C7] overflow-y-auto">
         {arrayHistorico && arrayHistorico.length > 0 ? (
           <table className="w-full border-separate">
             <thead className="text-left">

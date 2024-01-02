@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, useContext } from "react";
 import { OperacaoSelecionadaContext } from "../../Contexts/OperacaoSelecionadaContext";
+import { ArrayHistoricoContext } from "../../Contexts/ArrayHistoricoContext";
 
 const Operacoes = () => {
   const [valoresOperacao, setValoresOperacao] = useState([]);
@@ -8,7 +9,6 @@ const Operacoes = () => {
   const [resultado, setResultado] = useState(0);
   const [visibilidadeResultadoContainer, setVisibilidadeResultadoContainer] =
     useState(false);
-  const [arrayHistorico, setArrayHistorico] = useState([]);
 
   const [quantidadeValores, setQuantidadeValores] = useState(
     localStorage.getItem("quantidadeValores") || 2
@@ -18,6 +18,9 @@ const Operacoes = () => {
   );
 
   const { operacaoSelecionada } = useContext(OperacaoSelecionadaContext);
+  const { arrayHistorico, setArrayHistorico } = useContext(
+    ArrayHistoricoContext
+  );
   const campoInput = useRef(null);
 
   const resultadoCores = {
@@ -45,7 +48,7 @@ const Operacoes = () => {
   };
 
   const handleEntradaCaracteres = (e) => {
-    setResultadoInput(e.target.value);
+    setResultadoInput(e.target.value.trim());
   };
 
   const handleSelectQuantidadeValores = (e) => {
