@@ -190,7 +190,7 @@ const Operacoes = () => {
       </div>
 
       <div className="flex flex-col p-4 gap-4 rounded-lg bg-[#C7C7C7]">
-        <div className="flex flex-row flex-wrap min-h-[130px] w-full justify-center items-center rounded-lg p-6 text-6xl font-bold bg-gray-600">
+        <div className="flex flex-row flex-wrap min-h-[130px] w-full justify-center items-center rounded-lg p-6 text-4xl font-bold bg-gray-600 sm:text-6xl">
           {valoresOperacao.map((valor, index) => (
             <div key={index}>
               <span className="text-white">{valor}</span>
@@ -215,7 +215,7 @@ const Operacoes = () => {
           <span className="text-white drop-shadow-md">=</span>
           <input
             ref={campoInput}
-            className="w-fit text-6xl bg-transparent border-0 outline-none text-white overflow-x-auto"
+            className="w-fit text-4xl bg-transparent border-0 outline-none text-white overflow-x-auto sm:text-6xl"
             value={resultadoInput}
             onChange={(e) => handleEntradaCaracteres(e)}
             onKeyDown={(e) => handleKeyBindings(e)}

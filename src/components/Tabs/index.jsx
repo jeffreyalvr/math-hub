@@ -15,11 +15,11 @@ const Tabs = ({ abas }) => {
             <h1
               key={aba.id}
               role="button"
-              className={`pb-4 text-3xl font-bold capitalize ${
+              className={`pb-4 text-2xl font-bold capitalize ${
                 abaSelecionada === aba.id
                   ? "text-emerald-500"
                   : "text-[#6B7280]"
-              }`}
+              } sm:text-3xl`}
               onClick={() => handleAbaSelecionada(aba.id)}
             >
               {aba.nome || "Sem_nome"}
