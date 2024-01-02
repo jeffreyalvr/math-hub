@@ -215,7 +215,7 @@ const Operacoes = () => {
           <span className="text-white drop-shadow-md">=</span>
           <input
             ref={campoInput}
-            className="w-fit text-6xl bg-transparent border-0 outline-none text-white"
+            className="w-fit text-6xl bg-transparent border-0 outline-none text-white overflow-x-auto"
             value={resultadoInput}
             onChange={(e) => handleEntradaCaracteres(e)}
             onKeyDown={(e) => handleKeyBindings(e)}
