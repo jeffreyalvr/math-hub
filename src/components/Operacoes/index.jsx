@@ -237,7 +237,7 @@ const Operacoes = () => {
           </span>
         </div>
 
-        <div className="flex flex-row justify-center gap-4 my-4">
+        <div className="flex flex-col justify-center gap-4 my-4 sm:flex-row">
           <button
             className="py-4 px-12 rounded-lg bg-[#4984CA] text-white font-bold hover:bg-opacity-75"
             onClick={handleBotaoVerificar}
