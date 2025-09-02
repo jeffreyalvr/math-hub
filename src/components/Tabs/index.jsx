@@ -8,7 +8,7 @@ const Tabs = ({ abas }) => {
   };
 
   return (
-    <div className="flex flex-col w-full max-w-3xl m-auto px-4 pb-4 lg:pb-0">
+    <div className="flex flex-col w-full max-w-3xl mx-auto my-10 px-4 pb-4 lg:pb-0">
       <div className="flex flex-row gap-8 mb-8 justify-center border-b border-[#B7B7B7] md:justify-start">
         {abas.length > 0 &&
           abas.map((aba) => (

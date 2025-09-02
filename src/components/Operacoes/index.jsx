@@ -16,6 +16,9 @@ const Operacoes = () => {
   const [alcanceValores, setAlcanceValores] = useState(
     localStorage.getItem("alcanceValores") || 250
   );
+  const [disposicao, setDisposicao] = useState(
+    localStorage.getItem("disposicao") || "horizontal"
+  );
 
   const { operacaoSelecionada } = useContext(OperacaoSelecionadaContext);
   const { arrayHistorico, setArrayHistorico } = useContext(
@@ -35,11 +38,17 @@ const Operacoes = () => {
 
   useEffect(() => {
     gerarNumerosAleatorios(quantidadeValores, alcanceValores);
-  }, [quantidadeValores, alcanceValores]);
+  }, [quantidadeValores, alcanceValores, disposicao]);
 
   useEffect(() => {
     limparInput();
-  }, [quantidadeValores, alcanceValores, operacaoSelecionada, valoresOperacao]);
+  }, [
+    quantidadeValores,
+    alcanceValores,
+    disposicao,
+    operacaoSelecionada,
+    valoresOperacao,
+  ]);
 
   const limparInput = () => {
     setResultadoInput("");
@@ -59,6 +68,11 @@ const Operacoes = () => {
   const handleSelectAlcanceValores = (e) => {
     localStorage.setItem("alcanceValores", e.target.value);
     setAlcanceValores(e.target.value);
+  };
+
+  const handleDisposicao = (e) => {
+    localStorage.setItem("disposicao", e.target.value);
+    setDisposicao(e.target.value);
   };
 
   const handleResultadoContainer = (estado) => {
@@ -141,21 +155,18 @@ const Operacoes = () => {
 
   const handleKeyBindings = (e) => {
     if (e.code === "Enter") handleBotaoVerificar();
-    if (e.code === "ShiftRight") handleBotaoGerarNovoCalculo();
+    if (e.code === "ShiftLeft" || e.code === "ShiftRight")
+      handleBotaoGerarNovoCalculo();
   };
 
   return (
     <div className="flex flex-col gap-8 pb-4 w-full max-w-3xl m-auto lg:pb-0">
-      <h3 className="text-xl font-bold capitalize text-center text-[#6B7280]">
-        {operacaoSelecionada.nome}
-      </h3>
-
       <div className="flex flex-row flex-wrap justify-center p-4 px-10 gap-4 rounded-lg bg-[#C7C7C7] sm:justify-around">
         <span
           className="flex flex-row gap-3 items-center text-[#555555]"
           title="Determina a quantidade de valores a serem calculados"
         >
-          quantidade de valores
+          operandos
           <select
             className="p-2 rounded-lg"
             value={quantidadeValores}
@@ -172,12 +183,13 @@ const Operacoes = () => {
           className="flex flex-row gap-3 items-center text-[#555555]"
           title="Determina o alcance máximo de cada número calculado"
         >
-          alcance dos valores
+          alcance
           <select
             className="p-2 rounded-lg"
             value={alcanceValores}
             onChange={(e) => handleSelectAlcanceValores(e)}
           >
+            <option value="9">até 9</option>
             <option value="25">até 25</option>
             <option value="100">até 100</option>
             <option value="250">até 250</option>
@@ -187,20 +199,55 @@ const Operacoes = () => {
             <option value="9999">até 9999</option>
           </select>
         </span>
+        <span
+          className="flex flex-row gap-3 items-center text-[#555555]"
+          title="Determina a disposição dos números"
+        >
+          disposição
+          <select
+            className="p-2 rounded-lg"
+            value={disposicao}
+            onChange={(e) => handleDisposicao(e)}
+          >
+            <option value="horizontal">horizontal</option>
+            <option value="vertical">vertical</option>
+          </select>
+        </span>
       </div>
 
       <div className="flex flex-col p-4 gap-4 rounded-lg bg-[#C7C7C7]">
-        <div className="flex flex-row flex-wrap min-h-[130px] w-full justify-center items-center rounded-lg p-6 text-4xl font-bold bg-gray-600 sm:text-6xl">
-          {valoresOperacao.map((valor, index) => (
-            <div key={index}>
-              <span className="text-white">{valor}</span>
-              {index < valoresOperacao.length - 1 && (
-                <span className="text-yellow-400 px-2">
-                  {operacaoSelecionada?.simbolo}
-                </span>
-              )}
+        <div
+          className={`flex flex-row gap-2 min-h-[130px] w-full rounded-lg p-6 text-4xl font-bold bg-gray-600 sm:text-6xl ${
+            disposicao === "vertical" ? "justify-end" : "justify-center"
+          }`}
+        >
+          {disposicao === "vertical" && (
+            <div className="flex flex-col justify-end w-fit">
+              <span className="text-yellow-400 px-2">
+                {operacaoSelecionada?.simbolo}
+              </span>
             </div>
-          ))}
+          )}
+
+          <div
+            className={`flex w-fit flex-wrap ${
+              disposicao === "vertical"
+                ? "flex-col text-right"
+                : "flex-row items-center"
+            }`}
+          >
+            {valoresOperacao.map((valor, index) => (
+              <div key={index}>
+                <span className="text-white">{valor}</span>
+                {disposicao === "horizontal" &&
+                  index < valoresOperacao.length - 1 && (
+                    <span className="text-yellow-400 px-2">
+                      {operacaoSelecionada?.simbolo}
+                    </span>
+                  )}
+              </div>
+            ))}
+          </div>
         </div>
         <div
           className={`${
@@ -262,7 +309,7 @@ const Operacoes = () => {
         </div>
         <div className="flex flex-col flex-wrap items-center gap-1 w-fit sm:flex-row sm:gap-4">
           <span className="px-3 py-1 w-fit rounded-lg bg-[#C7C7C7] text-[#676767] text-xs font-bold">
-            SHIFT DIREITO
+            SHIFT
           </span>
           Para pular e gerar um novo cálculo.
         </div>
