@@ -168,7 +168,7 @@ const Operacoes = () => {
         >
           operandos
           <select
-            className="p-2 rounded-lg"
+            className="p-2 rounded-lg bg-white"
             value={quantidadeValores}
             onChange={(e) => handleSelectQuantidadeValores(e)}
           >
@@ -185,7 +185,7 @@ const Operacoes = () => {
         >
           alcance
           <select
-            className="p-2 rounded-lg"
+            className="p-2 rounded-lg bg-white"
             value={alcanceValores}
             onChange={(e) => handleSelectAlcanceValores(e)}
           >
@@ -205,7 +205,7 @@ const Operacoes = () => {
         >
           disposição
           <select
-            className="p-2 rounded-lg"
+            className="p-2 rounded-lg bg-white"
             value={disposicao}
             onChange={(e) => handleDisposicao(e)}
           >
@@ -275,7 +275,7 @@ const Operacoes = () => {
         >
           <span>Resposta: {resultado}</span>
           <span
-            className="px-2 rounded-lg bg-[#0000004f] text-white"
+            className="px-2 rounded-lg bg-[#0000004f] hover:bg-[#0000004f]/75 text-white"
             role="button"
             title="Ocultar"
             onClick={() => handleResultadoContainer(false)}
@@ -286,13 +286,13 @@ const Operacoes = () => {
 
         <div className="flex flex-col justify-center gap-4 my-4 sm:flex-row">
           <button
-            className="py-4 px-12 rounded-lg bg-[#4984CA] text-white font-bold hover:bg-opacity-75"
+            className="py-4 px-12 rounded-lg bg-[#4984CA] text-white font-bold hover:bg-[#4984CA]/75"
             onClick={handleBotaoVerificar}
           >
             Verificar resposta
           </button>
           <button
-            className="py-4 px-12 rounded-lg bg-[#636069] text-white font-bold hover:bg-opacity-75"
+            className="py-4 px-12 rounded-lg bg-[#636069] text-white font-bold hover:bg-[#636069]/75"
             onClick={handleBotaoGerarNovoCalculo}
           >
             Gerar novo cálculo

@@ -1,6 +1,7 @@
+import { useState } from "react";
+
 import "./styles/global.css";
 
-import { useState } from "react";
 import { OperacaoSelecionadaContext } from "./Contexts/OperacaoSelecionadaContext";
 
 import Sidebar from "./components/Sidebar";

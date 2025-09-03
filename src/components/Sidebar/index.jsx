@@ -20,10 +20,10 @@ const Sidebar = ({ operacoes, handleOperacao }) => {
         {Object.values(operacoes).map((operacao) => (
           <a
             role="button"
-            className={`p-4 hover:bg-opacity-75 font-bold ${
+            className={`p-4 font-bold ${
               operacaoSelecionada.nome === operacao.nome
-                ? "bg-emerald-500 text-white"
-                : "bg-[#3F3F3F]"
+                ? "bg-emerald-500 hover:bg-emerald-500/75 text-white"
+                : "bg-[#3F3F3F] hover:bg-[#3F3F3F]/75 "
             }`}
             onClick={() => handleOperacao(operacao.id)}
             key={operacao.id}
