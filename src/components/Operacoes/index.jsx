@@ -38,7 +38,7 @@ const Operacoes = () => {
 
   useEffect(() => {
     gerarNumerosAleatorios(quantidadeValores, alcanceValores);
-  }, [quantidadeValores, alcanceValores, disposicao]);
+  }, [quantidadeValores, alcanceValores]);
 
   useEffect(() => {
     limparInput();
