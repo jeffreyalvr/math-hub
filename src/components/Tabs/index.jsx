@@ -28,7 +28,7 @@ const Tabs = ({ abas }) => {
       </div>
 
       {abas.length > 0 && (
-        <div>
+        <>
           {abas.map((aba) => (
             <div
               key={aba.id}
@@ -37,7 +37,7 @@ const Tabs = ({ abas }) => {
               {aba.componente}
             </div>
           ))}
-        </div>
+        </>
       )}
     </div>
   );

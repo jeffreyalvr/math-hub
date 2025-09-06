@@ -262,7 +262,7 @@ const Operacoes = () => {
           <span className="text-white drop-shadow-md">=</span>
           <input
             ref={campoInput}
-            className="w-fit text-4xl bg-transparent border-0 outline-none text-white overflow-x-auto sm:text-6xl"
+            className="w-full text-4xl bg-transparent border-0 outline-none text-white overflow-x-auto sm:text-6xl"
             value={resultadoInput}
             onChange={(e) => handleEntradaCaracteres(e)}
             onKeyDown={(e) => handleKeyBindings(e)}
